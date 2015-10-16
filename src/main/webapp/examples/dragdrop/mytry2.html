@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic usage</title>
+    <meta charset="utf-8">
+	<script src="jquery-1.10.2.js"></script>
+    
+	<link href="../content/shared/styles/examples-offline.css" rel="stylesheet">
+    <link href="../../styles/kendo.common.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.rtl.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.default.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.dataviz.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.dataviz.default.min.css" rel="stylesheet">
+    <script src="../../js/jquery.min.js"></script>
+      <script src="../../js/connections.js"></script>
+	<script src="../../js/kendo.all.min.js"></script>
+    <script src="../content/shared/js/console.js"></script>
+    <script>
+        
+    </script>
+    
+    
+</head>
+<body>
+
+            <div class="demo-section">
+                <div id="droptarget" class="k-header">Football</div>
+                <div id="draggable1">
+					
+					<div id="f1">Ronaldo</div>
+					<div id="f2">Kaka</div>
+					<div id="f3">Messi</div>				
+					<div id="f11">Ronaldo</div>
+					<div id="f12">Kaka</div>
+					<div id="f13">Messi</div>				
+	
+				</div>
+				
+	               
+            </div>
+            
+</body>
+            <script>
+			var shothis,showthis1;
+                function draggableOnDragStart(e) {
+				 console.log("133","$scope","draggableOnDragStart", "", e);
+				 var vv=e;
+				 showthis1 = droptarget.textContent || droptarget.innerText;
+				 shothis="";
+				 var element = document.getElementById(vv.toElement.id);
+					showthis1 = element.textContent || element.innerText;
+                    $(vv.toElement.id).addClass("hollow");
+                    $("#droptarget").removeClass("painted");
+				console.log("133","$scope","draggableOnDragStart has", "", showthis1);
+                }
+
+                function droptargetOnDragEnter(e) {
+				var element = document.getElementById(e.toElement.id);
+					var showthis3= element.textContent || element.innerText;
+					console.log("133","$scope","draggableOnDragEnter", "", e);
+                    $("#droptarget").text(showthis3);
+                    $("#droptarget").addClass("painted");
+					$("#droptarget").text(showthis3);
+                }
+
+                function droptargetOnDragLeave(e) {
+				console.log("133","$scope","draggableOnDragLeave", "", e);
+                  
+                    $("#droptarget").removeClass("painted");
+                }
+ 		
+				function droptargetOnDrop(e) {
+					console.log("133","$scope","draggableOnDrop", "", e);
+					                    			
+					var element = document.getElementById( e.toElement.id);
+					showthis = element.textContent || element.innerText;
+					
+                    			
+					
+					
+					console.log("133","$scope","draggabfdvfdgegjkjgkgkleOnDrop", "", showthis1);
+					console.log("133","$scope","draggabfdvfdgegjkjgkgkleOnDrop", "", showthis);
+					
+                    $(element).removeClass("hollow"); 	
+					var draggedhere=element.id;
+					if(draggedhere=='f1'){
+ 					$("#droptarget").text(showthis);
+					$("#f1").text(showthis1);
+					
+					}
+					else if(draggedhere=='f2'){
+					$("#droptarget").text(showthis);	
+ 					$("#f2").text(showthis1);
+					}
+					
+					else if(draggedhere=='f3'){
+					$("#droptarget").text(showthis);
+ 					$("#f3").text(showthis1);
+					}
+					
+					if(showthis1=="Cricket"|| showthis1=="cricket"||showthis1=="Football"|| showthis1=="football"||showthis1=="Basketball"|| showthis1=="basketball")
+					{
+					window.location = 'mytry.html?'+showthis1;
+					}
+					else{
+					window.location = 'mytry2.html?'+showthis1;
+					}
+					
+					
+                }
+
+                function draggableOnDragEnd(e) {
+                    var draggable = $(document.getElementById(e.toElement.id));
+					console.log("133","$scope","onDragend", "", e);
+                   
+
+                    draggable.removeClass("hollow");
+                }
+
+                $(document).ready(function() {
+					
+					$('#droptarget').connections({to: '#f1', 'class': 'edgef1'});
+					$('#droptarget').connections({to: '#f2', 'class': 'edgef2'});
+					$('#droptarget').connections({to: '#f3', 'class': 'edgef3'});
+					$('#droptarget').connections({to: '#f11', 'class': 'demo'});
+					$('#droptarget').connections({to: '#f12', 'class': 'demo'});
+					$('#droptarget').connections({to: '#f13', 'class': 'demo'});
+					
+					$('#f2').connections({to: '#f3', 'class': 'edgef11'});
+					$('#f1').connections({to: '#f3', 'class': 'edgef11'});
+					$('#f12').connections({to: '#f13', 'class': 'demo'});
+					$('#f11').connections({to: '#f13', 'class': 'demo'});
+					$('.edgef1').html(function(i) { return '<span>>10 </span>' });
+					$('.edgef2').html(function(i) { return '<span><70 </span>' });
+					$('.edgef3').html(function(i) { return '<span>=50 </span>' });
+					
+					
+					
+					
+					
+					
+					shothis=window.location.search.substring(1);
+					console.log("133","$scope","onDragend", "", window.location.search.substring(1));
+					$("#droptarget").text(shothis);
+					if(shothis=="Messi")
+					{
+					$("#f12").text('Football');
+					$("#f11").text('Kaka');
+					$("#f13").text('Ronaldo');
+					$("#f11").addClass("red");
+					$("#f13").addClass("red");
+					$("#f12").addClass("red");
+					$("#f2").text('ST');
+					$("#f1").text('G:50');
+					$("#f3").text('A:20');
+					$("#f1").addClass("red");
+					$("#f3").addClass("red");
+					$("#f2").addClass("red");
+					
+					}
+					else if(shothis=="Kaka")
+					{
+					$("#f12").text('Football');
+					$("#f11").text('Messi');
+					$("#f13").text('Ronaldo');
+					$("#f11").addClass("red");
+					$("#f13").addClass("red");
+					$("#f12").addClass("red");
+					$("#f2").text('MID');
+					$("#f1").text('G:20');
+					$("#f3").text('A:40');
+					$("#f1").addClass("red");
+					$("#f3").addClass("red");
+					$("#f2").addClass("red");
+					}
+					else if(shothis=="Ronaldo")
+					{
+					$("#f12").text('Football');
+					$("#f11").text('Kaka');
+					$("#f13").text('Messi');
+					$("#f11").addClass("red");
+					$("#f13").addClass("red");
+					$("#f12").addClass("red");
+					$("#f2").text('ST');
+					$("#f1").text('G:100');
+					$("#f3").text('A:70');
+					$("#f1").addClass("red");
+					$("#f3").addClass("red");
+					$("#f2").addClass("red");}
+					else{
+					window.alert("No result found!!");
+					}
+					
+					$("#f").kendoDraggable({
+                        hint: function() {
+                            return $("#f").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+                    });
+					
+					 $("#f1").kendoDraggable({
+                        hint: function() {
+                            return $("#f1").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+                    });
+					
+					$("#f2").kendoDraggable({
+                        hint: function() {
+                            return $("#f2").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+                    });
+					
+					$("#f3").kendoDraggable({
+                        hint: function() {
+                            return $("#f3").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+
+                    });
+				
+					$("#f11").kendoDraggable({
+                        hint: function() {
+                            return $("#f11").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+                    });
+					
+					$("#f12").kendoDraggable({
+                        hint: function() {
+                            return $("#f12").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+                    });
+					
+					$("#f13").kendoDraggable({
+                        hint: function() {
+                            return $("#f13").clone();
+                        },
+                        dragstart: draggableOnDragStart,
+                        dragend: draggableOnDragEnd
+
+                    });
+								
+					
+                    $("#droptarget").kendoDropTarget({
+                        dragenter: droptargetOnDragEnter,
+                        dragleave: droptargetOnDragLeave,
+                        drop: droptargetOnDrop
+                    });
+
+                    var draggable = $("#draggable1").data("kendoDraggable");
+					   var draggable2 = $("#draggable2").data("kendoDraggable");
+
+                    $("#cursorOffset").click(function(e) {
+                        if (this.checked) {
+                            draggable.options.cursorOffset = { top: 70, left: 50 };
+                        } else {
+                            draggable.options.cursorOffset = null;
+                        }
+                    });
+
+                    $("#axis").change(function(e) {
+                        draggable.options.axis = $(this).val();
+                    });
+                    
+                    $("#axis").kendoDropDownList({
+                    });
+                });
+            </script>
+
+            <style>
+                
+                .painted {
+                    background-color: #03a9f4;
+                    color: #fff;
+                }
+                
+                #f.hollow
+                {
+                    cursor: default;
+                    background: #ececec;
+                }
+                
+				
+                #droptarget
+                {	top: 50%;
+                    height: 200px;
+                    width: 200px;
+                    font-size: 14px;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 200px;
+                    margin: 0 auto;
+                    cursor: default;
+                    border: 1px solid #999;
+                }
+
+                .demo-section
+                {
+                    height: 300px;
+                    position: relative;
+                }
+				
+		
+				
+				 #f1 {
+                    cursor: move;
+                    position: absolute;
+                    top: 30%;
+                    left: 33%;
+                    margin-left: -28px;
+					text-align: center;
+					line-height: 56px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                  
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+                }
+				
+				 #f2 {
+                    cursor: move;
+                    position: absolute;
+                    top: 15%;
+                    left: 70%;
+                    margin-left: -28px;
+					text-align: center;
+					line-height: 56px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                    background-color: #F44336;
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+                }
+				
+				  #f3 {
+                    cursor: move;
+                    position: absolute;
+                    top: 97%;
+                    left: 50%;
+                    margin-left: -28px;
+					text-align: center;
+					line-height: 56px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                   background-color: #F44336;
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+                }
+				
+				#f11 {
+                    cursor: move;
+                    position: absolute;
+                    top: 80%;
+                    left: 35%;
+                    margin-left: -28px;
+					text-align: center;
+					line-height: 56px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                  
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+                }
+				
+				 #f12 {
+                    cursor: move;
+                    position: absolute;
+                    top: 35%;
+                    left: 75%;
+                    margin-left: -28px;
+					text-align: center;
+					line-height: 56px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                    background-color: #F44336;
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+                }
+				
+				  #f13 {
+                    cursor: move;
+                    position: absolute;
+                    top: 80%;
+                    left: 65%;
+                    margin-left: -28px;
+					text-align: center;
+					line-height: 56px;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                   background-color: #F44336;
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+                }
+				
+				
+				
+				.red{
+				background-color: #F44336;
+                    color: #fff;
+				}
+				.blue{
+				background-color: #03a9f4;
+                    color: #fff;
+				}
+				.green{
+				background-color: #8BC34A;
+                    color: #fff;
+				}
+				
+                .painted {
+                    background-color: #03a9f4;
+                    color: #fff;
+                }
+				
+				.connection {
+				border: 7px solid black;
+				display:table;
+				border-radius: 61px;
+				z-index: -999;
+				color: rgb(200,200,200);
+				color: rgba(0,0,0,0.7);
+				}
+				
+				.demo {
+				border:7px solid black;
+				z-index:2;
+				display:table;
+				border-radius:90px;
+				pointer-events:none;
+				color: rgb(200,200,200);
+				color: rgba(0,0,0,0.7);
+				}
+				.demo:hover {
+					color:#55f;
+				}
+				
+				.demo span {
+				z-index: 1;
+				background:black;
+				color: white;
+				opacity:0.7;
+				position: absolute;
+				display:block;
+				margin: auto;
+				padding: 0.3em 0.6em;
+				border-radius:10px;
+				box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+				}
+				.demo:hover span {
+					background: #55f;
+					opacity:1;
+				}
+				.connection-border-right span {
+					left: 1em;
+				}
+				.connection-border-left span {
+					right: 1em;
+				}
+				.connection-border-top span {
+					top: 1em;
+				}
+				.connection-border-bottom span {
+					bottom: 1em;
+				}
+				
+				 .edgef1 {
+				border:3px solid #051;
+				opacity: 0.5;
+				z-index:1;
+				border-radius:100%;
+				pointer-events:none;
+				}
+				
+				 .edgef2 {
+				border:3px solid #051;
+				opacity: 0.5;
+				z-index:1;
+				border-radius:100%;
+				pointer-events:none;
+				}
+				
+				 .edgef3 {
+				border:3px solid #051;
+				opacity: 0.5;
+				z-index:1;
+				border-radius:100%;
+				pointer-events:none;
+				}
+				
+				 .edgef11 {
+				border:3px solid #051;
+				opacity: 0.5;
+				z-index:1;
+				border-radius:100%;
+				pointer-events:none;
+				}
+				
+				 .edgef12 {
+				border:3px solid #051;
+				opacity: 0.5;
+				z-index:1;
+				border-radius:100%;
+				pointer-events:none;
+				}
+				
+				 .edgef13 {
+				border:3px solid #051;
+				opacity: 0.5;
+				z-index:1;
+				border-radius:100%;
+				pointer-events:none;
+				}
+				
+				
+            </style>
+     
+
+</html>
