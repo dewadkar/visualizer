@@ -1,0 +1,9 @@
+branches:
+  only:
+    - master
+languages: Java
+notifications:
+  slack: 
+   secure: "QZfayLd5TYhbFDrVkx8UF7DFwgS72WK7BSFkroYN6ck7F3pO8RKyg6WhjYtHqXrQthrlelYg3w5fBnP23h91B4BwdmrsPwK2Th+4tkvW4bmTY81d1YugyOIUrdOtvCkhtkVetRfaR7PAq9U2+gxkD+oBVJOl9QCS+n6lbTd+kZsxPESuDj8wX8Hi2czoKHI8DF9t80oSogOofq8LN9vqh2F1fz4+FBEUu9uV1nh4+1uNuBksikrNyNe3C9QxvE81a+LDQWuP8CxWYqT5vLmEVyEFx5JBKECAR/ImXu1tEOGTB3XzMApx5mqn345LhBzNnb6wIi8SIOwZ+YIwuZrdKYLRC+tnhGTSJjhyegc9M2rjuxxo9XrrNYG777aW9WUuM87NP7sXLGYN6EjqLDxd3uT74I2FTfXLdLPsMDl4EOnT0ceApcfk19FJES9BDt3A3+fBl3TtTVz4AqCIgkUVdyrvaplwytrHx3iJFIjPBnbdW2jVRtQtcGbO83FPs10jWzM+z/ifUr8/+kAMyPH4bRLrDGpvDRJa8cLtLjJs8vCLRTK9R/MjvPN9xlTBRq+Q6GrYHyRXlQPcQkx8KU4V0/uoHm3EuxUjhbwKYuUf8pkqcwAn3z4XmTesHy5uQ55TMu84l2sSdmNi9H+QfiLJA5tuwxl+YD4euUhszZv9+ic="
+sudo: false
+script: mvn install -Dmaven.test.skip=true 
